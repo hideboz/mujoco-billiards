@@ -1,0 +1,55 @@
+<!-- ビリヤードのボールの定義 -->
+<!-- https://mujoco.readthedocs.io/en/stable/XMLreference.html#asset-material -->
+<mujoco>
+  <include file="ball-definitions.xml" />
+
+  <asset>
+    <texture name="tex-grid" type="2d" builtin="checker" rgb1=".1 .2 .3"
+     rgb2=".2 .3 .4" width="200" height="200" mark="none"/>
+
+    <material name="mat-grid" texture="tex-grid" texrepeat="1 1"
+     reflectance="0" emission="0.4"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0.2 0.15 3"/>
+    <camera name="cam1" pos="0.2 0.15 0.7" />
+
+    <geom type="plane" size="0 0 10" material="mat-grid" />
+
+    <geom class="ball" pos="0.0 0 0.1" material="mat-billiards-01" />
+    <geom class="ball" pos="0.1 0 0.1" material="mat-billiards-02" />
+    <geom class="ball" pos="0.2 0 0.1" material="mat-billiards-03" />
+    <geom class="ball" pos="0.3 0 0.1" material="mat-billiards-04" />
+    <geom class="ball" pos="0.4 0 0.1" material="mat-billiards-05" />
+
+    <geom class="ball" pos="0.0 0.1 0.1" material="mat-billiards-06" />
+    <geom class="ball" pos="0.1 0.1 0.1" material="mat-billiards-07" />
+    <geom class="ball" pos="0.2 0.1 0.1" material="mat-billiards-08" />
+    <geom class="ball" pos="0.3 0.1 0.1" material="mat-billiards-09" />
+    <geom class="ball" pos="0.4 0.1 0.1" material="mat-billiards-10" />
+
+    <geom class="ball" pos="0.0 0.2 0.1" material="mat-billiards-11" />
+    <geom class="ball" pos="0.1 0.2 0.1" material="mat-billiards-12" />
+    <geom class="ball" pos="0.2 0.2 0.1" material="mat-billiards-13" />
+    <geom class="ball" pos="0.3 0.2 0.1" material="mat-billiards-14" />
+    <geom class="ball" pos="0.4 0.2 0.1" material="mat-billiards-15" />
+
+    <!-- cue ball -->
+    <body pos="0.0 0.3 0.1">
+      <geom name="cue-ball" class="ball" pos="0 0 0" rgba="1 1 1 1" />
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0.0275 0 0" zaxis="1 0 0"/>
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="-0.0275 0 0" zaxis="1 0 0"/>
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 0.0275 0" zaxis="0 1 0"/>
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 -0.0275 0" zaxis="0 1 0"/>
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 0 0.0275" />
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 0 -0.0275" />
+    </body>
+
+    <!-- 9番の裏側 (数字が裏返っているけど、しょうがない) -->
+    <!--
+    <geom class="ball" pos="0.1 0.3 0.1" material="mat-billiards-09" euler="180 0 180"/>
+    -->
+  </worldbody>
+
+</mujoco>

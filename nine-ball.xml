@@ -1,0 +1,90 @@
+<!-- ナインボール -->
+<mujoco>
+  <include file="billiard-table-definitions.xml" />
+  <include file="ball-definitions.xml" />
+
+  <!-- ボールが速い場合には 1e-6 くらい小さくする必要があるみたい -->
+  <option timestep="1e-6"/>
+
+  <visual>
+    <global offheight="720" offwidth="720" />
+  </visual>
+
+  <worldbody>
+    <!-- 表面にボールを置く高さ -->
+    <!-- surface のベースの z座標 1 + surface の厚み 0.05 + ボールの半径 0.0285 = 1.0785 -->
+
+    <!-- cue ball -->
+    <body pos="-0.64 -0.635 1.0785">
+      <freejoint/>
+      <geom name="cue-ball" class="ball" pos="0 0 0" rgba="1 1 1 1" />
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0.0275 0 0" zaxis="1 0 0"/>
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="-0.0275 0 0" zaxis="1 0 0"/>
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 0.0275 0" zaxis="0 1 0"/>
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 -0.0275 0" zaxis="0 1 0"/>
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 0 0.0275" />
+      <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 0 -0.0275" />
+    </body>
+
+    <!-- ball01 -->
+    <body pos="0 0.635 1.0785">
+      <freejoint/>
+      <geom name="ball01" class="ball" euler="0 0 180" material="mat-billiards-01" />
+    </body>
+
+    <!-- ball02 -->
+    <body pos="0.029 0.6852294734194975 1.0785">
+      <freejoint/>
+      <geom name="ball02" class="ball" euler="0 0 180" material="mat-billiards-02" />
+    </body>
+
+    <!-- ball03 -->
+    <body pos="-0.029 0.6852294734194975 1.0785">
+      <freejoint/>
+      <geom name="ball03" class="ball" euler="0 0 180" material="mat-billiards-03" />
+    </body>
+
+    <!-- ball04 -->
+    <body pos="0.058 0.7354589468389949 1.0785">
+      <freejoint/>
+      <geom name="ball04" class="ball" euler="0 0 180" material="mat-billiards-04" />
+    </body>
+
+    <!-- ball09 -->
+    <body pos="0.0 0.7354589468389949 1.0785">
+      <freejoint/>
+      <geom name="ball09" class="ball" euler="0 0 180" material="mat-billiards-09" />
+    </body>
+
+    <!-- ball05 -->
+    <body pos="-0.058 0.7354589468389949 1.0785">
+      <freejoint/>
+      <geom name="ball05" class="ball" euler="0 0 180" material="mat-billiards-05" />
+    </body>
+
+    <!-- ball06 -->
+    <body pos="0.029 0.7856884202584924 1.0785">
+      <freejoint/>
+      <geom name="ball06" class="ball" euler="0 0 180" material="mat-billiards-06" />
+    </body>
+
+    <!-- ball07 -->
+    <body pos="-0.029 0.7856884202584924 1.0785">
+      <freejoint/>
+      <geom name="ball07" class="ball" euler="0 0 180" material="mat-billiards-07" />
+    </body>
+
+    <!-- ball08 -->
+    <body pos="0.0 0.8359178936779897 1.0785">
+      <freejoint/>
+      <geom name="ball08" class="ball" euler="0 0 180" material="mat-billiards-08" />
+    </body>
+
+
+    <!-- カメラ -->
+    <camera name="cam1" pos="0 -2.0 2.5" euler="45 0 0"/>
+    <camera name="cam2" pos="0 0 4.3" />
+
+  </worldbody>
+
+</mujoco>

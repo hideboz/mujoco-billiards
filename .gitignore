@@ -1,0 +1,24 @@
+# MuJoCo build artifacts
+**/build/
+**/*.so
+**/*.o
+**/*.a
+
+# Python artifacts
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.pytest_cache/
+.venv/
+venv/
+
+# Editor / System files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# User backups
+*.bak

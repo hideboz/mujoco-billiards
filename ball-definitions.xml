@@ -1,0 +1,53 @@
+<!-- ビリヤードのボールの定義 -->
+<!-- include して使用する -->
+<mujoco>
+  <compiler meshdir="img" texturedir="img"/>
+
+  <asset>
+    <texture name="tex-billiards-01" type="2d" file="billiard-ball-01.png"/>
+    <texture name="tex-billiards-02" type="2d" file="billiard-ball-02.png"/>
+    <texture name="tex-billiards-03" type="2d" file="billiard-ball-03.png"/>
+    <texture name="tex-billiards-04" type="2d" file="billiard-ball-04.png"/>
+    <texture name="tex-billiards-05" type="2d" file="billiard-ball-05.png"/>
+    <texture name="tex-billiards-06" type="2d" file="billiard-ball-06.png"/>
+    <texture name="tex-billiards-07" type="2d" file="billiard-ball-07.png"/>
+    <texture name="tex-billiards-08" type="2d" file="billiard-ball-08.png"/>
+    <texture name="tex-billiards-09" type="2d" file="billiard-ball-09.png"/>
+    <texture name="tex-billiards-10" type="2d" file="billiard-ball-10.png"/>
+    <texture name="tex-billiards-11" type="2d" file="billiard-ball-11.png"/>
+    <texture name="tex-billiards-12" type="2d" file="billiard-ball-12.png"/>
+    <texture name="tex-billiards-13" type="2d" file="billiard-ball-13.png"/>
+    <texture name="tex-billiards-14" type="2d" file="billiard-ball-14.png"/>
+    <texture name="tex-billiards-15" type="2d" file="billiard-ball-15.png"/>
+
+    <material name="mat-billiards-01" texture="tex-billiards-01" />
+    <material name="mat-billiards-02" texture="tex-billiards-02" />
+    <material name="mat-billiards-03" texture="tex-billiards-03" />
+    <material name="mat-billiards-04" texture="tex-billiards-04" />
+    <material name="mat-billiards-05" texture="tex-billiards-05" />
+    <material name="mat-billiards-06" texture="tex-billiards-06" />
+    <material name="mat-billiards-07" texture="tex-billiards-07" />
+    <material name="mat-billiards-08" texture="tex-billiards-08" />
+    <material name="mat-billiards-09" texture="tex-billiards-09" />
+    <material name="mat-billiards-10" texture="tex-billiards-10" />
+    <material name="mat-billiards-11" texture="tex-billiards-11" />
+    <material name="mat-billiards-12" texture="tex-billiards-12" />
+    <material name="mat-billiards-13" texture="tex-billiards-13" />
+    <material name="mat-billiards-14" texture="tex-billiards-14" />
+    <material name="mat-billiards-15" texture="tex-billiards-15" />
+  </asset>
+
+  <default>
+    <default class="ball">
+      <!-- ビリヤードのボールの直径は 56.5mm 〜 57.3mm、 重量は 160g 〜 170g -->
+      <!-- solref="-1e6 -1" がいいみたい。-1e7 にすると、ボールが跳ねてしまう。-->
+      <geom type="sphere" size="0.0285" mass="0.165"
+            friction="0 0 0" solref="-1e8 -10" />
+    </default>
+  </default>
+
+
+  <worldbody>
+  </worldbody>
+
+</mujoco>
