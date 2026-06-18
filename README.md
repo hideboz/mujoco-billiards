@@ -10,6 +10,13 @@ It uses custom Signed Distance Field (SDF) plugins to accurately simulate the co
   <img src="screenshot/nine-ball-cam2.png" width="48%" />
 </p>
 
+## Demo Video
+
+You can watch the simulation in action on YouTube Shorts:
+
+[![Billiards Simulation Demo](https://img.youtube.com/vi/gdgRgan6nv8/0.jpg)](https://www.youtube.com/shorts/gdgRgan6nv8)
+
+*(Click the image above to watch the video on YouTube)*
 
 ## Features
 
