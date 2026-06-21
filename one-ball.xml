@@ -1,4 +1,4 @@
-<!-- ビリヤード (pocket billiards) -->
+<!-- Pocket billiards -->
 <mujoco>
   <include file="billiard-table-definitions.xml" />
   <include file="ball-definitions.xml" />
@@ -12,8 +12,8 @@
   <worldbody>
     <camera name="cam1" pos="0 -2.3 2" euler="60 0 0" />
 
-    <!-- 表面にボールを置く高さ -->
-    <!-- surface のベースの z座標 1 + surface の厚み 0.05 + ボールの半径 0.0285 = 1.0785 -->
+    <!-- Height for placing balls on the surface -->
+    <!-- Base z-coordinate of the surface 1 + surface thickness 0.05 + ball radius 0.0285 = 1.0785 -->
 
     <!-- cue ball -->
     <body pos="0 -0.635 1.0785">
@@ -36,8 +36,8 @@
   </worldbody>
 
   <keyframe>
-    <!-- 初期状態 -->
-    <!-- 最初のバンキングテストには qvel="0 3.30 0 0 0 0" とする -->
+    <!-- Initial state -->
+    <!-- Use qvel="0 3.30 0 0 0 0" for initial banking test -->
     <key name="key1"
          qpos="0 -0.635 1.0785
                0 0 0 1

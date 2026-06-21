@@ -1,4 +1,4 @@
-<!-- ビリヤードのボールの定義 -->
+<!-- Billiard ball definitions -->
 <!-- https://mujoco.readthedocs.io/en/stable/XMLreference.html#asset-material -->
 <mujoco>
   <include file="ball-definitions.xml" />
@@ -46,10 +46,7 @@
       <site type="cylinder" size="0.004 0.001" rgba="1 0 0 1" pos="0 0 -0.0275" />
     </body>
 
-    <!-- 9番の裏側 (数字が裏返っているけど、しょうがない) -->
-    <!--
-    <geom class="ball" pos="0.1 0.3 0.1" material="mat-billiards-09" euler="180 0 180"/>
-    -->
+
   </worldbody>
 
 </mujoco>

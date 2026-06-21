@@ -1,9 +1,9 @@
-<!-- ナインボール -->
+<!-- Nine-ball -->
 <mujoco>
   <include file="billiard-table-definitions.xml" />
   <include file="ball-definitions.xml" />
 
-  <!-- ボールが速い場合には 1e-6 くらい小さくする必要があるみたい -->
+  <!-- Needs to be around 1e-6 for high-speed balls -->
   <option timestep="1e-6"/>
 
   <visual>
@@ -11,8 +11,8 @@
   </visual>
 
   <worldbody>
-    <!-- 表面にボールを置く高さ -->
-    <!-- surface のベースの z座標 1 + surface の厚み 0.05 + ボールの半径 0.0285 = 1.0785 -->
+    <!-- Height for placing balls on the surface -->
+    <!-- Base z-coordinate of the surface 1 + surface thickness 0.05 + ball radius 0.0285 = 1.0785 -->
 
     <!-- cue ball -->
     <body pos="-0.64 -0.635 1.0785">
@@ -81,7 +81,7 @@
     </body>
 
 
-    <!-- カメラ -->
+    <!-- Cameras -->
     <camera name="cam1" pos="0 -2.0 2.5" euler="45 0 0"/>
     <camera name="cam2" pos="0 0 4.3" />
 

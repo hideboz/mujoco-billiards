@@ -1,19 +1,19 @@
-<!-- ビリヤードテーブル (billiards table) の定義 -->
-<!-- include して使用する -->
+<!-- Billiards table definitions -->
+<!-- Include to use -->
 <!--
-    規格の参考
+    Reference standards
     https://www.nba.or.jp/wp-content/uploads/2022/09/2025%E6%94%B9%E5%AE%9A%E7%89%88NBA%E3%83%AB%E3%83%BC%E3%83%AB%E3%83%96%E3%83%83%E3%82%AF20250401.pdf
     https://en.wikipedia.org/wiki/Pool_(cue_sports)
     https://en.wikipedia.org/wiki/Billiard_table#Dimensions_2
     https://sportsdimensia.com/measuring-a-pool-table/
 -->
 <!--
-    playing surface (9-foot table): 254 cm × 127 cm (100 inch × 50 inch)
-    コーナーポケットの中心から、クッションの出っ張り分を 4cm として、
-    クッションなしでの、表面の広さは 262 cm × 135 cm とする。
-    クッションの高さは 3.5cm とする。
-    ポケットの穴の直径: 12cm。
-    ボールの直径: 5.7cm。
+    Playing surface (9-foot table): 254 cm x 127 cm (100 inch x 50 inch).
+    Assuming 4cm for the cushion protrusion from the center of the corner pocket,
+    the surface area without cushions is 262 cm x 135 cm.
+    Cushion height is 3.5cm.
+    Pocket hole diameter: 12cm.
+    Ball diameter: 5.7cm.
 -->
 <mujoco>
   <!--
@@ -53,21 +53,21 @@
       </instance>
     </plugin>
 
-    <!-- クッションになる部品 -->
+    <!-- Parts that act as cushions -->
     <plugin plugin="mujoco.sdf.trapezoid">
       <instance name="trapezoid_x">
         <config key="basewidth" value="1.265148"/>
-        <config key="topwidth" value="1.165148"/> <!-- 上の数字 -0.1 -->
+        <config key="topwidth" value="1.165148"/> <!-- Number above -0.1 -->
         <config key="height" value="0.035"/>
         <config key="depth" value="0.01"/>
       </instance>
     </plugin>
 
-    <!-- クッションになる部品 -->
+    <!-- Parts that act as cushions -->
     <plugin plugin="mujoco.sdf.trapezoid">
       <instance name="trapezoid_y">
         <config key="basewidth" value="1.227574"/>
-        <config key="topwidth" value="1.127574"/> <!-- 上の数字 -0.1 -->
+        <config key="topwidth" value="1.127574"/> <!-- Number above -0.1 -->
         <config key="height" value="0.035"/>
         <config key="depth" value="0.01"/>
       </instance>
@@ -120,89 +120,89 @@
   </asset>
 
   <default>
-    <!-- 表面のポケットの部分 -->
+    <!-- Surface pocket areas -->
     <default class="pocket">
       <geom type="sdf" material="mat-surface"
             priority="1" condim="6" friction="0.1 1e-3 2.8e-4" solref="-1e7 -1e3"/>
     </default>
 
-    <!-- ポケットの上の木の部分 -->
+    <!-- Wooden parts above the pockets -->
     <default class="pocket-wood">
       <geom type="sdf" material="mat-wood"
             priority="1" condim="6" friction="0 0 0" solref="-1e5 -1e5"/>
     </default>
 
 
-    <!-- 表面の y方向に伸びる一番両端の部分 -->
-    <!-- 実際に球は転がらないので、friction などの設定はいらないはずだが… -->
+    <!-- Outermost parts of the surface extending in the Y-direction -->
+    <!-- Balls don't actually roll here, so friction settings shouldn't be necessary... -->
     <default class="surface-y1">
       <geom type="box" material="mat-surface" size="0.038787 0.655 0.05"
             priority="1" condim="6" friction="0.1 1e-3 2.8e-4" solref="-1e7 -1e3"/>
     </default>
 
-    <!-- 表面の X方向に伸びる一番両端の部分 -->
-    <!-- 実際に球は転がらないので、friction などの設定はいらないはずだが… -->
+    <!-- Outermost parts of the surface extending in the X-direction -->
+    <!-- Balls don't actually roll here, so friction settings shouldn't be necessary... -->
     <default class="surface-x1">
       <geom type="box" material="mat-surface" size="0.665 0.06 0.05"
             priority="1" condim="6" friction="0.1 1e-3 2.8e-4" solref="-1e7 -1e3"/>
     </default>
 
 
-    <!-- 表面の y方向に伸びる一番端から2番目の部分 -->
+    <!-- Second outermost parts of the surface extending in the Y-direction -->
     <!--
-        反射のときのボールの逆回転をおさえるため、この部分だけ friction の最初の値を
-        大きくしてある。
+        The primary friction value is increased for this part to suppress
+        the ball's reverse rotation upon reflection.
     -->
     <default class="surface-y2">
       <geom type="box" material="mat-surface" size="0.081213 0.575 0.05"
             priority="1" condim="6" friction="0.8 1e-3 2.8e-4" solref="-1e7 -1e3"/>
     </default>
 
-    <!-- 表面の X方向に伸びる一番端から2番目の部分 -->
+    <!-- Second outermost parts of the surface extending in the X-direction -->
     <!--
-        反射のときのボールの逆回転をおさえるため、この部分だけ friction の最初の値を
-        大きくしてある。
+        The primary friction value is increased for this part to suppress
+        the ball's reverse rotation upon reflection.
     -->
     <default class="surface-x2">
       <geom type="box" material="mat-surface" size="0.545 0.06 0.05"
             priority="1" condim="6" friction="0.8 1e-3 2.8e-4" solref="-1e7 -1e3"/>
     </default>
 
-    <!-- 表面の中心の一番大きな部分 -->
+    <!-- Largest center part of the surface -->
     <default class="surface-center">
       <geom type="box" material="mat-surface" size="0.615 1.25 0.05"
             priority="1" condim="6" friction="0.1 1e-3 2.8e-4" solref="-1e7 -1e3" />
     </default>
 
 
-    <!-- X方向に伸びるクッション -->
+    <!-- Cushions extending in the X-direction -->
     <default class="cushion-x">
       <geom type="sdf" material="mat-surface"
             priority="1" condim="6" friction="0.03 0.01 0.001" solref="-1e7 -1e3"/>
     </default>
 
-    <!-- Y方向に伸びるクッション -->
+    <!-- Cushions extending in the Y-direction -->
     <default class="cushion-y">
       <geom type="sdf" material="mat-surface"
             priority="1" condim="6" friction="0.03 0.01 0.001" solref="-1e7 -1e3"/>
     </default>
 
-    <!-- X方向に伸びるクッション (球が実際にぶつかる部分の円筒) -->
-    <!-- solref="-1e10 *" くらいの硬さがないと、速めの速度で入射角と反射角が等しくならない -->
+    <!-- Cushions extending in the X-direction (the cylinder where the ball actually hits) -->
+    <!-- Requires a stiffness of around solref="-1e10 *" to make the angles of incidence and reflection equal at higher speeds -->
     <!--
-        クッションに強く当たったボールは入射角よりも反射角が小さくなる。
-        弱く当たったボールは反射角が大きくなる。
+        A ball hitting the cushion strongly will have a smaller angle of reflection than incidence.
+        A weakly hitting ball will have a larger angle of reflection.
     -->
     <default class="cylinder-x">
       <geom type="cylinder" material="mat-surface" size="0.005 0.582574" zaxis="1 0 0"
             priority="1" condim="6" friction="0.01 0 0" solref="-1e9 -8e3"/>
     </default>
 
-    <!-- Y方向に伸びるクッション (球が実際にぶつかる部分の円筒) -->
-    <!-- solref="-1e10 *" くらいの硬さがないと、速めの速度で入射角と反射角が等しくならない -->
+    <!-- Cushions extending in the Y-direction (the cylinder where the ball actually hits) -->
+    <!-- Requires a stiffness of around solref="-1e10 *" to make the angles of incidence and reflection equal at higher speeds -->
     <!--
-        クッションに強く当たったボールは入射角よりも反射角が小さくなる。
-        弱く当たったボールは反射角が大きくなる。
+        A ball hitting the cushion strongly will have a smaller angle of reflection than incidence.
+        A weakly hitting ball will have a larger angle of reflection.
     -->
     <default class="cylinder-y">
       <geom type="cylinder" material="mat-surface" size="0.005 0.563787" zaxis="0 1 0"
@@ -210,29 +210,29 @@
     </default>
 
 
-    <!-- 上の部分の y方向に伸びる一番両端の部分 -->
+    <!-- Outermost parts of the upper section extending in the Y-direction -->
     <default class="upper-y1">
       <geom type="box" material="mat-wood" size="0.038787 0.655 0.020" />
     </default>
 
-    <!-- 上の部分の y方向に伸びる一番端から2番目の部分 -->
+    <!-- Second outermost parts of the upper section extending in the Y-direction -->
     <default class="upper-y2">
       <geom type="box" material="mat-wood" size="0.03 0.603787 0.01995"
             priority="1" condim="6" friction="0.03 0.01 0.001" solref="-1e7 0"/>
     </default>
 
-    <!-- 上の部分の X方向に伸びる一番両端の部分 -->
+    <!-- Outermost parts of the upper section extending in the X-direction -->
     <default class="upper-x1">
       <geom type="box" material="mat-wood" size="0.655 0.06 0.020" />
     </default>
 
-    <!-- 上の部分の X方向に伸びる一番端から2番目の部分 -->
+    <!-- Second outermost parts of the upper section extending in the X-direction -->
     <default class="upper-x2">
       <geom type="box" material="mat-wood" size="0.632574 0.021213 0.01995"
             priority="1" condim="6" friction="0.03 0.01 0.001" solref="-1e7 0"/>
     </default>
 
-    <!-- スポット -->
+    <!-- Spots -->
     <default class="spot">
       <site type="cylinder" size="0.006 0.0001" rgba="1 1 1 1"/>
     </default>
@@ -254,32 +254,32 @@
           priority="1" solref="-10000 -100" />
 
     <body pos="0 0 1">
-      <!-- 左上 -->
+      <!-- Top left -->
       <geom class="pocket" mesh="hollow_cylinder1" pos="-0.675 1.31 -0.0001">
         <plugin instance="hollow_cylinder1"/>
       </geom>
 
-      <!-- 左中 -->
+      <!-- Middle left -->
       <geom class="pocket" mesh="hollow_cylinder2" pos="-0.717426 0 -0.0001">
         <plugin instance="hollow_cylinder2"/>
       </geom>
 
-      <!-- 左下 -->
+      <!-- Bottom left -->
       <geom class="pocket" mesh="hollow_cylinder1" pos="-0.675 -1.31 -0.0001">
         <plugin instance="hollow_cylinder1"/>
       </geom>
 
-      <!-- 右上 -->
+      <!-- Top right -->
       <geom class="pocket" mesh="hollow_cylinder1" pos="0.675 1.31 -0.0001">
         <plugin instance="hollow_cylinder1"/>
       </geom>
 
-      <!-- 右中 -->
+      <!-- Middle right -->
       <geom class="pocket" mesh="hollow_cylinder2" pos="0.717426 0 -0.0001">
         <plugin instance="hollow_cylinder2"/>
       </geom>
 
-      <!-- 右下 -->
+      <!-- Bottom right -->
       <geom class="pocket" mesh="hollow_cylinder1" pos="0.675 -1.31 -0.0001">
         <plugin instance="hollow_cylinder1"/>
       </geom>
@@ -302,18 +302,18 @@
 
       <geom class="surface-center" pos="0 0 0" />
 
-      <!-- センタースポット -->
+      <!-- Center spot -->
       <site class="spot" pos="0 0 0.05" />
 
-      <!-- フットスポット -->
+      <!-- Foot spot -->
       <site class="spot" pos="0 0.635 0.05" />
 
-      <!-- ヘッドスポット -->
+      <!-- Head spot -->
       <site class="spot" pos="0 -0.635 0.05" />
     </body>
 
-    <!-- 表面周囲の高くなっている部分 -->
-    <!-- surface のベースの z座標 1 + surface の厚み 0.05 + 上部の厚みの半分 0.02 = 1.070 -->
+    <!-- Elevated parts around the surface -->
+    <!-- Base z-coordinate of the surface 1 + surface thickness 0.05 + half of upper thickness 0.02 = 1.070 -->
     <body pos="0 0 1.070">
       <geom class="pocket-wood" mesh="half_hollow_cylinder1" pos="-0.675 1.31 0" euler="0 0 135">
         <plugin instance="half_hollow_cylinder1"/>
@@ -355,7 +355,7 @@
       <geom class="upper-y2" pos="0.747426 0.663787 0" />
       <geom class="upper-y2" pos="0.747426 -0.663787 0" />
 
-      <!-- ポイントマーク -->
+      <!-- Point marks -->
       <site class="spot" pos="-0.77 0.3175 0.020" />
       <site class="spot" pos="-0.77 0.635 0.020" />
       <site class="spot" pos="-0.77 0.9525 0.020" />
@@ -372,8 +372,8 @@
 
     </body>
 
-    <!-- クッション -->
-    <!-- surface のベースの z座標 1 + surface の厚み 0.05 = 1.050 -->
+    <!-- Cushions -->
+    <!-- Base z-coordinate of the surface 1 + surface thickness 0.05 = 1.050 -->
     <body pos="0 0 1.050">
 
       <geom class="cushion-x" mesh="trapezoid_x" euler="90 0 0" pos="0 1.332426 0.035">

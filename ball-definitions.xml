@@ -1,5 +1,5 @@
-<!-- ビリヤードのボールの定義 -->
-<!-- include して使用する -->
+<!-- Billiard ball definitions -->
+<!-- Include to use -->
 <mujoco>
   <compiler meshdir="img" texturedir="img"/>
 
@@ -39,8 +39,7 @@
 
   <default>
     <default class="ball">
-      <!-- ビリヤードのボールの直径は 56.5mm 〜 57.3mm、 重量は 160g 〜 170g -->
-      <!-- solref="-1e6 -1" がいいみたい。-1e7 にすると、ボールが跳ねてしまう。-->
+      <!-- Billiard ball diameter: 56.5mm - 57.3mm, weight: 160g - 170g -->
       <geom type="sphere" size="0.0285" mass="0.165"
             friction="0 0 0" solref="-1e8 -10" />
     </default>
